@@ -2,8 +2,10 @@
 import { storeToRefs } from 'pinia';
 import { useLightsStore } from '../stores/lights';
 
-const { isNew } = storeToRefs(useLightsStore())
-const { filterLigths } = useLightsStore()
+import MButton from '../components/MButton.vue';
+
+const { isNew, dtsort } = storeToRefs(useLightsStore())
+const { filterLigths, sortByDate } = useLightsStore()
 </script>
 
 <template>
@@ -16,6 +18,10 @@ const { filterLigths } = useLightsStore()
                 >
             <span>только новинки</span>
         </label>
+        <MButton @click="sortByDate">
+            Сортировать дате 
+            {{ dtsort > 0 ? '&#8593;' : '&#8595;' }}
+        </MButton>
     </article>
 </template>
 
@@ -28,6 +34,7 @@ article {
     background: var(--m-bg-color);
     border-radius: 5px;
     label {
+        margin: 0 10px 0 0;
         input {
             vertical-align: middle;
         }
